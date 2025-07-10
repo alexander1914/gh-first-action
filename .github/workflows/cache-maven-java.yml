@@ -1,0 +1,28 @@
+name: Build and Test with Cache Maven
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [5, 8, 11] # Specify the Java versions you want to test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: zulu
+          cache: maven # Enable Maven dependency caching
+
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots verify
