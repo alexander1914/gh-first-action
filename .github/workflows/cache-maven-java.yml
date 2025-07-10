@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [5, 8, 11] # Specify the Java versions you want to test
+        java-version: [8, 11] # Specify the Java versions you want to test
 
     steps:
       - uses: actions/checkout@v4
