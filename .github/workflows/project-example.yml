@@ -1,13 +1,17 @@
 name: Build the a project NODE JS
 on: push
 jobs: 
-    test:
-        runs-on: ubuntu-latest
-        steps: 
-            - name: Get code
-              uses: action/checkout@04            
-            - name: Install Node JS
-              uses: action/setup-node@04
-              with:
-                node-version: 18         
+  test:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get code
+        uses: actions/checkout@03                  
+      - name: Install Node JS
+        uses: actions/setup-node@03
+        with:
+          node-version: 18      
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run:  npm test          
 
